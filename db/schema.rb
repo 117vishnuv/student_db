@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_12_27_132603) do
 
-  create_table "institutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "institutions", force: :cascade do |t|
     t.string "name"
     t.text "address"
     t.string "phone"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_12_27_132603) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "students", force: :cascade do |t|
     t.string "full_name"
     t.text "address"
     t.string "email"

@@ -1,3 +1,3 @@
 class Institution < ApplicationRecord
-    has_many :students
+  has_many :students
 end
