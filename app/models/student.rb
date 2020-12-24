@@ -1,6 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :institution
-  after_create :set_rank
+  # after_create :set_rank
 
   def self.search(params)
     students = all
