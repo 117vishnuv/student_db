@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
-  skip_before_action :authenticate_user!, :only => [:new]
+  skip_before_action :authenticate_user!, :only => [:new,:index,:create,:show]
   # GET /students
   # GET /students.json
   def index
@@ -35,6 +35,7 @@ class StudentsController < ApplicationController
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
+   
   end
 
   # PATCH/PUT /students/1
