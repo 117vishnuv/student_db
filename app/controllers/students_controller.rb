@@ -10,6 +10,7 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @students = Student.search(params)
   end
 
   # GET /students/new
@@ -19,6 +20,7 @@ class StudentsController < ApplicationController
 
   # GET /students/1/edit
   def edit
+    @students = Student.search(params)
   end
 
   # POST /students

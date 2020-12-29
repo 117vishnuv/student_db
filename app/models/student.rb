@@ -12,6 +12,9 @@ class Student < ApplicationRecord
     if params[:institution_name].present?
       students = students.joins(:institution).where('institutions.name like :institution', institution: "%#{params[:institution_name]}%")
     end
+    if params[:country_name].present?
+      students = students.joins(:country).where('countries.country_name like :country', country: "%#{params[:country_name]}%")
+    end
     students
   end
 
