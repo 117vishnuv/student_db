@@ -1,3 +1,5 @@
+<h1 class='text-center'>Approve new entries</h1>
+
 <p id="notice"><%= notice %></p>
 
 
@@ -21,7 +23,7 @@
   </div>
   <div class='float-right'>
      <% if user_signed_in? %>
-        <%= render "search_form" , class: 'float-right'%>
+        <%= render "students/search_form" , class: 'float-right'%>
      <% end %>
   </div>
 </div>
@@ -35,6 +37,7 @@
       <th>Phone</th>
       <th>Institution</th>
       <th>Country</th>
+      <th>Approve</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -44,13 +47,22 @@
     
   
     <% @students.each do |student| %>
-    <% if student.approved? %>
+    <% if !student.approved? %>
       <tr>
         <td><%= student.full_name %></td>
         <td><%= student.address %></td>
         <td><%= student.mobile %></td>
         <td><%= student.institution.name %></td>
         <td><%= student.country.try(:country_name)%></td>
+        <td>
+        <%= form_for(student) do |f| %>
+           <div class="field">
+             <%= f.label "Approve!" %> <br />
+             <%= f.check_box :approved %> <br />
+             <%= f.submit "Submit", class: "button small radius" %>
+           </div>
+        <% end %>
+        </td>
 
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>

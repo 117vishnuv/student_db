@@ -1,12 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, :only => [:new,:index,:create,:show]
-  
-  def admin
-  end
-
-
-
   # GET /students
   # GET /students.json
   def index
@@ -49,13 +43,15 @@ class StudentsController < ApplicationController
   def update
     respond_to do |format|
       if @student.update(student_params)
-        format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+        # format.html { redirect_to @student, notice: 'Student was successfully updated.' }
+        format.html { redirect_back(fallback_location: root_path) }#changed to stay in same page after approving
         format.json { render :show, status: :ok, location: @student }
       else
         format.html { render :edit }
         format.json { render json: @student.errors, status: :unprocessable_entity }
       end
     end
+   
   end
 
   # DELETE /students/1
@@ -76,6 +72,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:full_name, :address, :mobile, :institution_id,:country_id)
+      params.require(:student).permit(:full_name, :address, :mobile, :institution_id,:country_id,:approved)
     end
 end
