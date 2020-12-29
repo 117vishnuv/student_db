@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_24_121700) do
+ActiveRecord::Schema.define(version: 2020_12_28_095156) do
+
+  create_table "countries", force: :cascade do |t|
+    t.string "country_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_name"], name: "index_countries_on_country_name", unique: true
+  end
 
   create_table "institutions", force: :cascade do |t|
     t.string "name"
@@ -18,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_121700) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "country_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -28,6 +36,7 @@ ActiveRecord::Schema.define(version: 2020_12_24_121700) do
     t.integer "institution_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "country_id"
   end
 
   create_table "users", force: :cascade do |t|

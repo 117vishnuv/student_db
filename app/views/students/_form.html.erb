@@ -23,12 +23,17 @@
 
   <div class="field">
     <%= form.label :mobile %>
-    <%= form.text_field :mobile %>
+    <%= form.number_field :mobile %>
   </div>
 
   <div class="field">
     <%= form.label :institution_id %>
     <%= form.select :institution_id, options_from_collection_for_select(Institution.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country_id %>
+    <%= form.select :country_id, options_from_collection_for_select(Country.all, :id, :country_name) %>
   </div>
 
   <div class="actions">

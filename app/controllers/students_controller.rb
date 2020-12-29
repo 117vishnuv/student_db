@@ -1,6 +1,12 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!, :only => [:new,:index,:create,:show]
+  
+  def admin
+  end
+
+
+
   # GET /students
   # GET /students.json
   def index
@@ -70,6 +76,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:full_name, :address, :phone, :institution_id)
+      params.require(:student).permit(:full_name, :address, :mobile, :institution_id,:country_id)
     end
 end

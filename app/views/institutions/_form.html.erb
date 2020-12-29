@@ -25,6 +25,10 @@
     <%= form.label :phone %>
     <%= form.text_field :phone %>
   </div>
+  <div class="field">
+    <%= form.label :country_id %>
+    <%= form.select :country_id, options_from_collection_for_select(Country.all, :id, :country_name) %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :institution
+  belongs_to :country
   # after_create :set_rank
 
   def self.search(params)
