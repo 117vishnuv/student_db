@@ -10,13 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_060428) do
+ActiveRecord::Schema.define(version: 2020_12_31_144019) do
+
+  create_table "buildings", force: :cascade do |t|
+    t.string "name"
+    t.integer "year"
+  end
 
   create_table "countries", force: :cascade do |t|
     t.string "country_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_name"], name: "index_countries_on_country_name", unique: true
+  end
+
+  create_table "credentials", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "credentials_students", id: false, force: :cascade do |t|
+    t.integer "student_id", null: false
+    t.integer "credential_id", null: false
+    t.index ["student_id", "credential_id"], name: "index_credentials_students_on_student_id_and_credential_id"
   end
 
   create_table "institutions", force: :cascade do |t|
@@ -26,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_12_29_060428) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "country_id"
+  end
+
+  create_table "qualifications", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "credential_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["credential_id"], name: "index_qualifications_on_credential_id"
+    t.index ["student_id"], name: "index_qualifications_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|
