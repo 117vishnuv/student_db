@@ -30,6 +30,13 @@
     <%= form.label :institution_id %>
     <%= form.select :institution_id, options_from_collection_for_select(Institution.all, :id, :name,:id) %>
   </div>
+   <div class='field'>
+    <%= form.label :credentials %><br />
+    <% for credential in Credential.all %>
+      <%= check_box_tag "student[credential_ids][]", credential.id, @student.credentials.include?(credential) %>
+      <%=h credential.name %><br />
+    <% end %>
+  </div>
 
   <div class="field">
     <%= form.label :country_id %>

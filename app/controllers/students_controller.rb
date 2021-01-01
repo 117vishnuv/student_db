@@ -11,6 +11,8 @@ class StudentsController < ApplicationController
   # GET /students/1.json
   def show
     @students = Student.search(params)
+    # @credentia =  @students.credentials.pluck(:name)
+ 
   end
 
   # GET /students/new
@@ -74,6 +76,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:full_name, :address, :mobile, :institution_id,:country_id,:approved)
+      params.require(:student).permit(:full_name, :address, :mobile, :institution_id,:country_id,:approved, credential_ids:[])
     end
 end

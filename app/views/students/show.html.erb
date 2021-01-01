@@ -19,6 +19,11 @@
   <strong>Institution:</strong>
   <%= @student.institution.try(:name) %>
 </p>
+<p>
+  <strong>Credentials:</strong>
+  <%# <%= @student.credentials.ids %> 
+  <%= @student.credentials.pluck(:name)%>
+</p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
 <%= link_to 'Back', students_path %>
