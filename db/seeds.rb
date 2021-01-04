@@ -6,25 +6,28 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-institutions = []
-country = ['India', 'Portugal','America', 'Spain', 'England']
+
+country = ['India', 'Portugal','America', 'Spain', 'England','Brazil','France']
 countries = []
 country.each do |i|
-  countries << Country.create(
-    country_name: i
+  countries << Country.create(:country_name => i,)
+end
 
-  )
+c_array = ['Higher Secondary','Diploma','Graduation','Post Graduation']
+c_obj = []
+c_array .each do |c|
+  c_obj << Credential.create(:name => c,)
 end
 
 
-
+institutions = []
 5.times do
   institutions << 
     Institution.create(
       name: Faker::University.unique.name,
       address: Faker::Address.unique.full_address,
       phone: Faker::PhoneNumber.unique.phone_number,
-      #  country_id: countries.id.uniq
+      country_id: countries.shuffle.first.id
     )
 end
 
@@ -35,6 +38,10 @@ end
     email: Faker::Internet.unique.email,
     mobile: Faker::PhoneNumber.unique.phone_number,
     institution_id: institutions.shuffle.first.id,
-    # country_id: countries.id.uniq
+    country_id: countries.shuffle.first.id,
+    approved: [0,1].sample,
+  
   )
 end
+
+

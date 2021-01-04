@@ -22,7 +22,7 @@
 <p>
   <strong>Credentials:</strong>
   <%# <%= @student.credentials.ids %> 
-  <%= @student.credentials.pluck(:name)%>
+  <%= @student.credentials.pluck(:name).join(',')%>
 </p>
 
 <%= link_to 'Edit', edit_student_path(@student) %> |
