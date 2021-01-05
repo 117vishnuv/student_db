@@ -13,13 +13,6 @@ country.each do |i|
   countries << Country.create(:country_name => i,)
 end
 
-c_array = ['Higher Secondary','Diploma','Graduation','Post Graduation']
-c_obj = []
-c_array .each do |c|
-  c_obj << Credential.create(:name => c,)
-end
-
-
 institutions = []
 5.times do
   institutions << 
@@ -31,7 +24,9 @@ institutions = []
     )
 end
 
+students = []
 20.times do
+  students <<
   Student.create(
     full_name: Faker::Name.unique.name,
     address: Faker::Address.unique.full_address,
@@ -42,6 +37,18 @@ end
     approved: [0,1].sample,
   
   )
+ 
 end
+
+c_array = ['Higher Secondary','Diploma','Graduation','Post Graduation']
+c_obj = []
+c_array .each do |c|
+  c_obj << Credential.create(:name => c,)
+end
+
+students.each do |s|
+  Qualification.create({student_id: s.id, credential_id: c_obj.shuffle.first.id})
+end
+
 
 

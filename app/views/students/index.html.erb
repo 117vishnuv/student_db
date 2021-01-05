@@ -41,9 +41,6 @@
   </thead>
 
   <tbody>
-  
-    
-  
     <% @students.each do |student| %>
     <% if student.approved? %>
       <tr>
@@ -53,10 +50,13 @@
         <td><%= student.institution.name %></td>
         <td><%= student.country.try(:country_name)%></td>
         <td><%= student.credentials.pluck(:name).join(',')%></td>
-
+       <% if user_signed_in? %>
+      
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          
+       <% end %>
       </tr>
     <% end %>  
     <% end %>
