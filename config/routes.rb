@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/credential/search' , to: 'credential#index' , as: 'credential_search' #for searching students wrt credential 
   get 'register', to: 'students#new', :as => 'register_students' # create register url
   get 'admin' , to: 'admin#home' , :as => 'admin' #admin panel
-  get 'admin/approve' , to: 'admin#approve' , :as => 'approve' #approval of student registration
+  get 'admin/waiting_list' ,  to: 'admin#list' , :as => 'waiting_list' #Waiting list of newly registerd students
+  match 'admin/approve/:id' , to: 'admin#approve' , :as => 'approve' , via: :patch #approval of student registration
   root to: "students#index" 
 end

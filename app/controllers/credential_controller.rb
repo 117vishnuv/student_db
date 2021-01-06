@@ -1,11 +1,11 @@
 class CredentialController < ApplicationController
 
     def index
-        @students = Student.search(params)
+        @students = Credential.search(params)
     end
-    # Never trust parameters from the scary internet, only allow the white list through.
+   
     def credential_params
-        params.require(:student).permit( credential_ids:[])
+        params.require(:student).permit( credential_ids:[],credential_name:[])
     end
 
 

@@ -31,7 +31,7 @@
         <td><%= student.institution.name %></td>
         <td><%= student.country.try(:country_name)%></td>
         <td>
-        <%= form_for(student) do |f| %>
+        <%= form_for student,url: approve_path(student) do |f| %>
            <div class="field">
              <%= f.label "Approve!" %> <br />
              <%= f.check_box :approved %> <br />
