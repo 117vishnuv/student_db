@@ -61,6 +61,7 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
+    RegistrationMailer.reject_student(@student).deliver
     @student.destroy
     respond_to do |format|
       format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
@@ -76,6 +77,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:full_name, :address, :mobile, :institution_id,:country_id,:approved, credential_ids:[])
+      params.require(:student).permit(:full_name, :address, :email, :mobile, :institution_id,:country_id,:approved, credential_ids:[])
     end
 end
