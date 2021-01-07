@@ -44,6 +44,10 @@ gem 'devise'
 
 gem 'toastr-rails'
 
+gem 'delayed_job_active_record' #for mailing
+
+gem "daemons" #for mailing
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -58,7 +62,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'figaro'
+  gem 'figaro' #hiding mailng details
 end
 
 group :test do

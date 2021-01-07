@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get 'admin' , to: 'admin#home' , :as => 'admin' #admin panel
   get 'admin/waiting_list' ,  to: 'admin#list' , :as => 'waiting_list' #Waiting list of newly registerd students
   match 'admin/approve/:id' , to: 'admin#approve' , :as => 'approve' , via: :patch #approval of student registration
+  match 'admin/reject/:id' , to: 'admin#reject' , :as => 'reject' , via: :patch #rejetion of student registration
   root to: "students#index" 
 end

@@ -14,7 +14,7 @@
       <th>Institution</th>
       <th>Country</th>
       <th>Approve</th>
-      <th>Reject[Delete]</th>
+      <th>Reject</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
     
   
     <% @students.each do |student| %>
-    <% if !student.approved? %>
+    <% if student.approved.nil? %>
       <tr>
         <td><%= student.full_name %></td>
         <td><%= student.address %></td>
@@ -34,13 +34,22 @@
         <td>
         <%= form_for student,url: approve_path(student) do |f| %>
            <div class="field">
-             <%= f.label "Approve!" %> <br />
-             <%= f.check_box :approved %> <br />
-             <%= f.submit "Submit", class: "button small radius" %>
+             <%# <%= f.label "Approve!" <br /> %>
+             <%= f.check_box :approved  %> 
+             <%= f.submit "Approve", class: "button  small radius" %>
            </div>
         <% end %>
         </td>
-        
+        <td>
+        <%= form_for student,url: reject_path(student) do |f| %>
+           <div class="field">
+             <%# <%= f.label "Reject!" <br />  %>
+             <%= f.check_box :approved ,{},'false' %> 
+             <%= f.submit "Reject", class: "button small radius" %>
+           </div>
+        <% end %>
+        </td>
+        <%# <%= check_box 'object', 'boolean_attribute', {}, 'true', 'false' %> 
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>

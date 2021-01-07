@@ -34,7 +34,7 @@ students = []
     mobile: Faker::PhoneNumber.unique.phone_number,
     institution_id: institutions.shuffle.first.id,
     country_id: countries.shuffle.first.id,
-    approved: [0,1].sample,
+    
   
   )
  

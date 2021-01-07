@@ -5,10 +5,16 @@ class Credential < ApplicationRecord
     def self.search(params)
     
       students = Student.all
+      students1 = Student.all
       if params[:credential_name].present?
-        students  = Student.joins(:credentials).where(credentials: { name: params[:credential_name][:name] - [""] })
-      end
-      students.uniq
+        (params[:credential_name][:name] - [""]).each do |par|
+          # students  = Student.joins(:credentials).where(credentials: { name: params[:credential_name][:name] - [""] } )
+          students  = Student.joins(:credentials).where(credentials: { name: [par] } )
+          students1 = students1 & students
+        end
+      end 
+     students1
+      
       
     
     end
