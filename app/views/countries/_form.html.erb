@@ -1,3 +1,4 @@
+<div class="container col-md-6">
 <%= form_with(model: country, local: true) do |form| %>
   <% if country.errors.any? %>
     <div id="error_explanation">
@@ -11,12 +12,12 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :country_name %>
-    <%= form.text_field :country_name %>
+    <%= form.text_field :country_name ,class: "form-control"%>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit 'Add country',class: "btn btn-success"%>
   </div>
 <% end %>

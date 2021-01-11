@@ -1,68 +1,71 @@
 <p id="notice"><%= notice %></p>
-
-
-<% if !user_signed_in? %>
-  <div class='container'>
-    <div class='float-left'>
-      <h1>Students</h1>
-        <% if user_signed_in? %>
-           <%= render "search_form" %>
-        <% end %>
-      </div>
-    <div class='float-right'>
-       <h1>Register new student</h1>
-       <%= link_to 'New Student', new_student_path ,class: 'btn btn-primary text-white float-right'%>
+ <div class="wrapper">
+    <div class="content-wrapper">
+     <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title col-md-6">Students Database</h3>
+                  <% if user_signed_in? %>
+                    <%= render "search_form" %>
+                  <% end %>
+                 
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover ">
+                  <thead>
+                    <tr>
+                      <th>Full name</th>
+                      <th>Address</th>
+                      <th>Phone</th>
+                      <th>Institution</th>
+                      <th>Country</th>
+                      <th>Qualification</th>
+                      <% if user_signed_in? %><th>Actions</th><% end %>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <% @students.each do |student| %>
+                  <% if student.approved? %>
+                  <tr>
+                    <td><%= student.full_name %></td>
+                    <td><%= student.address %></td>
+                    <td><%= student.mobile %></td>
+                    <td><%= student.institution.name %></td>
+                    <td><%= student.country.try(:country_name)%></td>
+                    <td><%= student.credentials.pluck(:name).join(', ')%></td>
+                    <% if user_signed_in? %>
+                      <td>
+                        <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle btn-sm" type="button" data-toggle="dropdown"><span class="caret"></span></button>
+                         <ul class="dropdown-menu justify-elements">
+                           <li><%= link_to 'Show', student %></li> <br/>
+                           <li><%= link_to 'Edit', edit_student_path(student) %></li> <br/>
+                           <li><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                         </ul>
+                        </div>
+                      </td>
+                    <% end %>
+                  </tr>
+                  <% end %>  
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div><!-- /.container-fluid -->
+      </section> 
     </div>
-  </div>
- <% else %>
- <div class='container'>
-  <div class='float-left'>
-    <h1>Students</h1>
-  </div>
-  <div class='float-right'>
-     <% if user_signed_in? %>
-        <%= render "search_form" , class: 'float-right'%>
-     <% end %>
-  </div>
-</div>
-<% end %> 
+  </div>   
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th>Full name</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Institution</th>
-      <th>Country</th>
-      <th>Qualification</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @students.each do |student| %>
-    <% if student.approved? %>
-      <tr>
-        <td><%= student.full_name %></td>
-        <td><%= student.address %></td>
-        <td><%= student.mobile %></td>
-        <td><%= student.institution.name %></td>
-        <td><%= student.country.try(:country_name)%></td>
-        <td><%= student.credentials.pluck(:name).join(',')%></td>
-       <% if user_signed_in? %>
-      
-        <td><%= link_to 'Show', student %></td>
-        <td><%= link_to 'Edit', edit_student_path(student) %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          
-       <% end %>
-      </tr>
-    <% end %>  
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
 

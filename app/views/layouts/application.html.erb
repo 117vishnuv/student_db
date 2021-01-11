@@ -4,31 +4,32 @@
     <title>StudentsDb</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body >
     <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
       <a class="navbar-brand" href="/">Students DB</a>
-      <%# <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-      </form> %>
-       <ul class="navbar-nav ml-auto"> 
-        <% if user_signed_in? %>
-             <li class="nav-item">
-                  <strong><%= link_to 'admin-panel' ,admin_path,  class: ' nav-link text-white'%></strong>
-              </li>
+        <ul class="navbar-nav ml-auto"> 
+         <% if user_signed_in? %>
+            <li class="nav-item">
+              <strong><%= link_to 'New Student', new_student_path ,class: 'nav-link text-white'%></strong>
+            </li>
+            <li class="nav-item">
+              <strong><%= link_to 'admin-panel' ,admin_path,  class: ' nav-link text-white'%></strong>
+            </li>
             <li class="nav-item"> 
                 <strong><%= link_to "Logout", destroy_user_session_path, method: :delete, class: ' nav-link text-white'%></strong>
             </li> 
             </ul> 
-         <% else %>   
+          <% else %>   
             <%# <li class="nav-item"> 
                 <strong><%= link_to "Sign up", new_user_registration_path ,class: 'nav-link text-white ', :style =>'font-size=36px;' %><%# </strong><br />
-            </li>  %>  
+            </li>  %>
+            <li class="nav-item">
+              <strong><%= link_to 'New Student', new_student_path ,class: 'nav-link text-white'%></strong>
+            </li> 
             <li class="nav-item"> 
               <strong><%= link_to "Admin-log in", new_user_session_path, class: 'nav-link text-white ml-auto'%></strong><br /> 
             </li> 
@@ -48,9 +49,9 @@
            <% end %>
         </script>
       <% end %>
-
-      <%= yield %>
     </div>
+    <%= yield %>
+    
     
   </body>
 </html>

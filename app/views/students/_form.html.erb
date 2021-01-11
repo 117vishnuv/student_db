@@ -1,54 +1,64 @@
-<%= form_with(model: student, local: true) do |form| %>
-  <% if student.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
-
-      <ul>
-      <% student.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<div class="container col-md-6">
+ <%= form_with(model: student, local: true) do |form| %>
+   <% if student.errors.any? %>
+     <div id="error_explanation">
+       <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+ 
+       <ul>
+         <% student.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+         <% end %>
+        </ul>
+      </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :full_name %>
-    <%= form.text_field :full_name %>
+    <%= form.text_field :full_name ,class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_area :address %>
+  <div class="form-group">
+    <%= form.label :address%>
+    <%= form.text_area :address ,class: "form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :email %>
-    <%= form.email_field :email %>
+    <%= form.email_field :email ,class: "form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :mobile %>
-    <%= form.text_field :mobile %>
+    <%= form.text_field :mobile ,class: "form-control"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :institution_id %>
-    <%= form.select :institution_id, options_from_collection_for_select(Institution.all, :id, :name,:id) %>
-  </div>
-   <div class='field'>
-    <%= form.label :credentials %><br />
-    <% for credential in Credential.all %>
-      <%= check_box_tag "student[credential_ids][]", credential.id, @student.credentials.include?(credential) %>
-      <%=h credential.name %><br />
-    <% end %>
+    <%= form.select :institution_id, options_from_collection_for_select(Institution.all, :id, :name,:id), {prompt: 'Select Institution'} ,class: "form-control"%>
   </div>
 
-  <div class="field">
-    <%= form.label :country_id %>
-    <%= form.select :country_id, options_from_collection_for_select(Country.all, :id, :country_name,:country_name) %>
+  <div class="form-group">
+      <%= form.label :country_id  %>
+      <%= form.select :country_id, options_from_collection_for_select(Country.all, :id, :country_name,:country_name),{promt: 'Select country'}, :class => 'form-control' %>
   </div>
+    
+ 
+   <%= form.label :credentials , class: "form-check-label" %>
+    <div class='form-check m-2'>
+      <% for credential in Credential.all %>
+        <%= check_box_tag "student[credential_ids][]", credential.id, @student.credentials.include?(credential) ,class: "form-check-input"%>
+        <%=h credential.name %><br />
+      <% end %>
+    </div>
+  
 
-  <div class="actions">
-    <%= form.submit %>
+
+  <div class="form-group">
+    <%= form.submit 'Submit request' , class: 'btn btn-success ' %>
   </div>
 <% end %>
+
+
+
+
+
