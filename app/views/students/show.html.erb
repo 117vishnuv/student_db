@@ -1,29 +1,38 @@
 <p id="notice"><%= notice %></p>
+<div class='container text-left' >
+  <p style='font-size:18px;'>
+    <strong>Full name:</strong>
+    <%= @student.full_name %>
+  </p>
 
-<p>
-  <strong>Full name:</strong>
-  <%= @student.full_name %>
-</p>
+  <p style='font-size:18px;'>
+    <strong>Address:</strong>
+    <%= @student.address %>
+  </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @student.address %>
-</p>
+  <p style='font-size:18px;'>
+    <strong>Mobile:</strong>
+    <%= @student.mobile %>
+  </p>
+  <p style='font-size:18px;'>
+    <strong>Email:</strong>
+    <%= @student.email %>
+  </p>
+  <p style='font-size:18px;'>
+    <strong>Country:</strong>
+    <%= @student.country.country_name %>
+  </p>
 
-<p>
-  <strong>Mobile:</strong>
-  <%= @student.mobile %>
-</p>
+  <p style='font-size:18px;'>
+   <strong>Institution:</strong>
+   <%= @student.institution.try(:name) %>
+  </p>
+  <p style='font-size:18px;'>
+   <strong>Credentials:</strong>
+   <%# <%= @student.credentials.ids %> 
+   <%= @student.credentials.pluck(:name).join(',')%>
+  </p>
 
-<p>
-  <strong>Institution:</strong>
-  <%= @student.institution.try(:name) %>
-</p>
-<p>
-  <strong>Credentials:</strong>
-  <%# <%= @student.credentials.ids %> 
-  <%= @student.credentials.pluck(:name).join(',')%>
-</p>
-
-<%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+  <%= link_to 'Edit', edit_student_path(@student) %> |
+  <%= link_to 'Back', students_path %>
+</div>
